@@ -4,9 +4,10 @@ require_once('../models/BaseModel.php');
  * @Model
  */
 
-class Member_model extends BaseModel{
-    public $table = 'members';
+class Borrow_log_model extends BaseModel{
+    public $table = 'borrow_logs';
     public $primary_key = 'id';
+    public $join_book = 'books';
 
     public function all(){
         $query = $this->_query("SELECT a.* FROM $this->table a");
@@ -26,7 +27,10 @@ class Member_model extends BaseModel{
     }
 
     public function create($data){
+        // pnow($data);
+        // pnow("INSERT INTO $this->table (".implode(', ', array_keys($data)).") VALUES (:".implode(', :', array_keys($data)).")");
         $query = $this->_create("INSERT INTO $this->table (".implode(', ', array_keys($data)).") VALUES (:".implode(', :', array_keys($data)).")", $data);
+        // pnow($query);
         return $query;
     }
     
@@ -43,9 +47,11 @@ class Member_model extends BaseModel{
         }
 
         $data['id'] = $id;
+        // pnow($data);
         // pnow("UPDATE $this->table SET  $set WHERE $this->primary_key = :id");
 
         $query = $this->_update("UPDATE $this->table SET  $set WHERE $this->primary_key = :id", $data);
+        // pnow($query);
         return $query;
     }
     
@@ -60,20 +66,11 @@ class Member_model extends BaseModel{
         $query = $this->_query("SELECT a.* FROM $this->table a WHERE a.full_name LIKE '%$keyword%'");
         return $query ? $query : [];
     }
-    public function generateCodeMember(){
-        $query = $this->_query(" SHOW TABLE STATUS LIKE 'members'");
-        $num =isset($query) ? $query[0]['Auto_increment'] : 0;
-        // pnow($query);
-        return 'MB-'.sprintf("%04d",$num+1);
-    }
 
-    public function findDetil($id){
-        $query = $this->_row_query("SELECT a.*, b.fullname as created_name,c.fullname as updated_name FROM $this->table a 
-        LEFT JOIN $this->table_join b ON b.id = a.created_by
-        LEFT JOIN $this->table_join c ON c.id = a.updated_by
-        WHERE a.id = ? ", [
-            $id
-        ]);
+    public function get_logs_by_member_id($member_id){
+        $query = $this->_query("SELECT a.*, b.name, b.cover FROM $this->table a LEFT JOIN $this->join_book b ON b.id = a.book_id WHERE a.member_id = $member_id ");
+        // pnow("SELECT a.* FROM $this->table a WHERE a.member_id = $member_id");
+        return $query ? $query : [];
     }
 }
 
