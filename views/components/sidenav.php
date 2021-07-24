@@ -44,13 +44,13 @@
         </h6>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="examples/dashboard.html">
+            <a class="nav-link <?= get_last_uri() == 'Author.php' ? 'active' : '' ?>" href="<?= base_url('controllers/Author.php') ?>">
               <i class="ni ni-single-02"></i>
               <span class="nav-link-text">Author Book</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="examples/dashboard.html">
+            <a class="nav-link <?= get_last_uri() == 'Book.php' ? 'active' : '' ?>" href="<?= base_url('controllers/Book.php') ?>">
               <i class="ni ni-ruler-pencil"></i>
               <span class="nav-link-text">Book</span>
             </a>

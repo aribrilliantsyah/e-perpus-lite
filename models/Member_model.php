@@ -65,6 +65,22 @@ class Member_model extends BaseModel{
         $query = $this->_query("SELECT count(a.id) as count FROM $this->table a");
         return isset($query[0]['count']) ? $query[0]['count'] : 0;
     }
+
+    public function generateCodeMember(){
+        $query = $this->_query("SHOW TABLE STATUS LIKE 'members'");
+        $num =isset($query) ? $query[0]['Auto_increment'] : 0;
+        // pnow($query);
+        return 'MB-'.sprintf("%04d",$num+1);
+    }
+
+    public function findDetil($id){
+        $query = $this->_row_query("SELECT a.*, b.fullname as created_name,c.fullname as updated_name FROM $this->table a 
+        LEFT JOIN $this->table_join b ON b.id = a.created_by
+        LEFT JOIN $this->table_join c ON c.id = a.updated_by
+        WHERE a.id = ? ", [
+            $id
+        ]);
+    }
 }
 
 ?>

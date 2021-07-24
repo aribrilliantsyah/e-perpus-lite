@@ -8,7 +8,8 @@ class Book_model extends BaseModel{
     public $table = 'books';
     public $primary_key = 'id';
     public $join1 = 'authors';
-
+    public $join2 = 'users';
+  
     public function all(){
         $query = $this->_query("SELECT a.*, b.author_name FROM $this->table a LEFT JOIN $this->join1 b ON b.id = a.author_id");
         return $query ? $query : [];
@@ -87,6 +88,23 @@ class Book_model extends BaseModel{
             'stock' => $stock,
             'updated_at' => date('Y-m-d H:i:s'),
         ], $id);
+    }
+
+    public function generateCodeBook(){
+        $query = $this->_query(" SHOW TABLE STATUS LIKE 'books'");
+        $num =isset($query) ? $query[0]['Auto_increment'] : 0;
+        // pnow($query);
+        return 'BK-'.sprintf("%04d",$num+1);
+    }
+
+    public function findDetil($id){
+        $query = $this->_row_query("SELECT a.*, b.author_name,c.fullname as created_name,d.fullname as updated_name FROM $this->table a LEFT JOIN $this->join1 b ON b.id = a.author_id  
+        LEFT JOIN $this->join2 c ON c.id = a.created_by
+        LEFT JOIN $this->join2 d ON c.id = a.updated_by
+        WHERE a.id = ? ", [
+            $id
+        ]);
+        return $query ? $query : [];
     }
 }
 
