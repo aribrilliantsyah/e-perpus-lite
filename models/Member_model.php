@@ -7,6 +7,7 @@ require_once('../models/BaseModel.php');
 class Member_model extends BaseModel{
     public $table = 'members';
     public $primary_key = 'id';
+    public $table_join = 'users';
 
     public function all(){
         $query = $this->_query("SELECT a.* FROM $this->table a");
