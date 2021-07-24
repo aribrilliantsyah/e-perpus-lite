@@ -56,11 +56,11 @@ class Book extends BaseController{
                     $dest_path = $uploadFileDir . $newFileName;
                     if(!move_uploaded_file($fileTmpPath, $dest_path)) {
                         $_SESSION['validasi'] = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
-                        header('location: ../controllers/Book.php?type=create');exit;
+                        header('location: ../controllers/Book.php?type=create');die;
                     } 
                 }else{
                     $_SESSION['validasi'] = 'File yang diperbolehkan '.implode(', ', $allowedfileExtensions);
-                    header('location: ../controllers/Book.php?type=create');
+                    header('location: ../controllers/Book.php?type=create');die;
                 }
             }
             $code = $this->book->generateCodeBook();
@@ -134,11 +134,11 @@ class Book extends BaseController{
                     if(!move_uploaded_file($fileTmpPath, $dest_path)) {
                         @unlink('../uploads/'.$_POST['current_cover']);
                         $_SESSION['validasi'] = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
-                        header('location: ../controllers/Book.php?type=create');
+                        header('location: ../controllers/Book.php?type=create');die;
                     } 
                 }else{
                     $_SESSION['validasi'] = 'File yang diperbolehkan '.implode(', ', $allowedfileExtensions);
-                    header('location: ../controllers/Book.php?type=create');
+                    header('location: ../controllers/Book.php?type=create');die;
                 }
             }
             
