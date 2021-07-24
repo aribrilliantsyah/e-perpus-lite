@@ -52,11 +52,11 @@ class Book extends BaseController{
 
                 $allowedfileExtensions = array('jpg', 'gif', 'png', 'webp', 'jpeg', 'bmp');
                 if(in_array($fileExtension, $allowedfileExtensions)) {
-                    $uploadFileDir = '../uploads/cover/';
+                    $uploadFileDir = '../uploads/';
                     $dest_path = $uploadFileDir . $newFileName;
                     if(!move_uploaded_file($fileTmpPath, $dest_path)) {
                         $_SESSION['validasi'] = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
-                        header('location: ../controllers/Book.php?type=create');
+                        header('location: ../controllers/Book.php?type=create');exit;
                     } 
                 }else{
                     $_SESSION['validasi'] = 'File yang diperbolehkan '.implode(', ', $allowedfileExtensions);
@@ -70,6 +70,7 @@ class Book extends BaseController{
                 "summary" => $_POST['summary'],
                 "cover" => $newFileName,                      
                 "author_id" => $_POST['author_id'],                
+                "stock" => $_POST['stock'],                
                 "created_at" => $this->timestamp(),                
                 "updated_at" => $this->timestamp(),                
                 "created_by" => self::$auth['id'],                
@@ -128,10 +129,10 @@ class Book extends BaseController{
                 
                 $allowedfileExtensions = array('jpg', 'gif', 'png', 'webp', 'jpeg', 'bmp');
                 if(in_array($fileExtension, $allowedfileExtensions)) {
-                    $uploadFileDir = '../uploads/cover/';
+                    $uploadFileDir = '../uploads/';
                     $dest_path = $uploadFileDir . $newFileName;
                     if(!move_uploaded_file($fileTmpPath, $dest_path)) {
-                        @unlink('../uploads/cover/'.$_POST['current_cover']);
+                        @unlink('../uploads/'.$_POST['current_cover']);
                         $_SESSION['validasi'] = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
                         header('location: ../controllers/Book.php?type=create');
                     } 
@@ -145,6 +146,7 @@ class Book extends BaseController{
             $data = [
                 "name" => $_POST['name'],
                 "summary" => $_POST['summary'],
+                "stock" => $_POST['stock'],
                 "cover" => $newFileName,                             
                 "author_id" => $_POST['author_id'],                       
                 "updated_at" => $this->timestamp(),                 
@@ -190,7 +192,7 @@ class Book extends BaseController{
         
         if($id){
             $detail = $this->book->find($id);
-            @unlink('../uploads/cover/'.$detail['cover']);
+            @unlink('../uploads/'.$detail['cover']);
             $deleted = $this->book->delete($id);
 
             $_SESSION['success'] = "Data Deleted";

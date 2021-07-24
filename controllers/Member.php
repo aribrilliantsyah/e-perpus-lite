@@ -55,7 +55,7 @@ class Member extends BaseController{
                     $dest_path = $uploadFileDir . $newFileName;
                     if(!move_uploaded_file($fileTmpPath, $dest_path)) {
                         $_SESSION['validasi'] = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
-                        header('location: ../controllers/Member.php?type=create');
+                        header('location: ../controllers/Member.php?type=create');exit;
                     } 
                 }else{
                     $_SESSION['validasi'] = 'File yang diperbolehkan '.implode(', ', $allowedfileExtensions);
@@ -133,7 +133,7 @@ class Member extends BaseController{
                     if(!move_uploaded_file($fileTmpPath, $dest_path)) {
                         @unlink('../uploads/'.$_POST['current_photo']);
                         $_SESSION['validasi'] = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
-                        header('location: ../controllers/Member.php?type=create');
+                        header('location: ../controllers/Member.php?type=create');exit;
                     } 
                 }else{
                     $_SESSION['validasi'] = 'File yang diperbolehkan '.implode(', ', $allowedfileExtensions);
@@ -173,6 +173,7 @@ class Member extends BaseController{
         
         if($id){
             $detail = $this->member->findDetil($id);
+            // pnow($detail);
             if($detail){
                 $data['detail'] = $detail;
                 $data['title'] = 'Member';

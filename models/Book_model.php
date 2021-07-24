@@ -29,6 +29,7 @@ class Book_model extends BaseModel{
 
     public function create($data){
         $query = $this->_create("INSERT INTO $this->table (".implode(', ', array_keys($data)).") VALUES (:".implode(', :', array_keys($data)).")", $data);
+        // pnow($query);
         return $query;
     }
     

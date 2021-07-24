@@ -3,7 +3,7 @@
     <!-- Brand -->
     <div class="sidenav-header  align-items-center">
       <a class="navbar-brand" href="javascript:void(0)">
-        <img src="<?= asset('assets/img/brand/logo.png') ?>" class="navbar-brand-img" alt="..." style="max-height: 3rem !important;">
+        <img src="<?= asset('assets/img/brand/logo2.png') ?>" class="navbar-brand-img" alt="..." style="max-height: 11rem !important;">
       </a>
     </div>
     <div class="navbar-inner">
@@ -18,7 +18,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="examples/dashboard.html">
+            <a class="nav-link <?= get_last_uri() == 'Member.php' ? 'active' : '' ?>" href="<?= base_url('controllers/Member.php') ?>">
               <i class="ni ni-spaceship"></i>
               <span class="nav-link-text">Member</span>
             </a>
@@ -29,12 +29,12 @@
               <span class="nav-link-text">Library</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="examples/dashboard.html">
               <i class="ni ni-planet"></i>
               <span class="nav-link-text">Borrowing History</span>
             </a>
-          </li>
+          </li> -->
         </ul>
         <!-- Divider -->
         <hr class="my-3">
@@ -55,12 +55,14 @@
               <span class="nav-link-text">Book</span>
             </a>
           </li>
+          <?php if(get_auth('role_id') == 1) { ?>
           <li class="nav-item">
             <a class="nav-link <?= get_last_uri() == 'User.php' ? 'active' : '' ?>" href="<?= base_url('controllers/User.php') ?>">
               <i class="ni ni-settings"></i>
               <span class="nav-link-text">User Management</span>
             </a>
           </li>
+          <?php } ?>
         </ul>
       </div>
     </div>

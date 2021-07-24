@@ -66,6 +66,12 @@
                 <input type="file" name="cover" class="form-control" placeholder="Cover" accept="image/*">
               </div>
             </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Stock <span class="text-red">*</span></label>
+                <input type="number" name="stock" class="form-control" placeholder="Stock" required>
+              </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-12">

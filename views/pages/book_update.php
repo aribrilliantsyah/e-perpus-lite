@@ -71,8 +71,14 @@
                 <label class="form-control-label">Cover</label>
                 <input type="file" name="cover" class="form-control" placeholder="Cover" accept="image/*"  >
                 <br>
-                <img class="avatar rounded-circle" onerror="this.src='<?= asset('/assets/img/theme/team-3.jpg') ?>'" src="<?= base_url('uploads/cover/'.$data['detail']['cover']) ?>">
+                <img class="avatar rounded-circle" onerror="this.src='<?= asset('/assets/img/theme/team-3.jpg') ?>'" src="<?= base_url('uploads/'.$data['detail']['cover']) ?>">
                 <input type="hidden" name="current_cover" value="<?= isset($data['detail']['cover']) ? $data['detail']['cover'] : '' ?>">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Stock <span class="text-red">*</span></label>
+                <input type="number" name="stock" class="form-control" placeholder="Stock" value="<?= isset($data['detail']['stock']) ? $data['detail']['stock'] : '' ?>" required>
               </div>
             </div>
           </div>

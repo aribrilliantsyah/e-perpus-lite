@@ -89,7 +89,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-xl-8">
+  <div class="col-xl-6">
     <div class="card">
       <div class="card-header border-0">
         <div class="row align-items-center">
@@ -140,7 +140,7 @@
       </div>
     </div>
   </div>
-  <div class="col-xl-4">
+  <div class="col-xl-6">
     <div class="card">
       <div class="card-header border-0">
         <div class="row align-items-center">

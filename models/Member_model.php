@@ -75,12 +75,18 @@ class Member_model extends BaseModel{
     }
 
     public function findDetil($id){
+        // pnow("SELECT a.*, b.fullname as created_name,c.fullname as updated_name FROM $this->table a 
+        // LEFT JOIN $this->table_join b ON b.id = a.created_by
+        // LEFT JOIN $this->table_join c ON c.id = a.updated_by
+        // WHERE a.id = ? ");
         $query = $this->_row_query("SELECT a.*, b.fullname as created_name,c.fullname as updated_name FROM $this->table a 
         LEFT JOIN $this->table_join b ON b.id = a.created_by
         LEFT JOIN $this->table_join c ON c.id = a.updated_by
         WHERE a.id = ? ", [
             $id
         ]);
+
+        return $query;
     }
 }
 

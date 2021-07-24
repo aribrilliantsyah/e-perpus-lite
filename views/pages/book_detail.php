@@ -35,6 +35,10 @@
                 <td><?= isset($data['detail']['author_name']) ? $data['detail']['author_name'] : '' ?></td>
               </tr>
               <tr>
+                <td width="30%">Stock</td>
+                <td><?= isset($data['detail']['stock']) ? $data['detail']['stock'] : '' ?></td>
+              </tr>
+              <tr>
                 <td width="30%">Created at</td>
                 <td><?= isset($data['detail']['created_at']) ? $data['detail']['created_at'] : '' ?></td>
               </tr>

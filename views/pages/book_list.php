@@ -57,10 +57,10 @@
                   <a href="<?= base_url('controllers/Book.php?type=update&id='.$item['id']) ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> edit</a>
                   <a href="<?= base_url('controllers/Book.php?type=delete_action&id='.$item['id']) ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> delete</a>
                 </td>
-                <td><img onerror="this.src='<?= asset('/assets/img/theme/team-3.jpg') ?>'" src="<?= base_url('/uploads/cover/'.$item['cover']) ?>" class="avatar avatar-xs rounded-circle" ></td>
+                <td><img onerror="this.src='<?= asset('/assets/img/theme/team-3.jpg') ?>'" src="<?= base_url('/uploads/'.$item['cover']) ?>" class="avatar avatar-xs" ></td>
                 <td><?= $item['code'] ?></td>
                 <td><?= $item['name'] ?></td>
-                <td><?= $item['summary'] ?></td>
+                <td><?= strlen($item['summary']) > 100 ? substr($item['summary'], 0, 100).'...' : $item['summary'] ?></td>
                 <td><?= $item['author_name'] ?></td>
               </tr>
             <?php
