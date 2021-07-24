@@ -1,54 +1,89 @@
 <div class="row">
-  <div class="col-xl-8">
-    <div class="card bg-default">
-      <div class="card-header bg-transparent">
-        <div class="row align-items-center">
-          <div class="col">
-            <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-            <h5 class="h3 text-white mb-0">Sales value</h5>
-          </div>
-          <div class="col">
-            <ul class="nav nav-pills justify-content-end">
-              <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
-                <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
-                  <span class="d-none d-md-block">Month</span>
-                  <span class="d-md-none">M</span>
-                </a>
-              </li>
-              <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
-                <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                  <span class="d-none d-md-block">Week</span>
-                  <span class="d-md-none">W</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+  <div class="col-xl-3">
+    <div class="card card-stats">
+      <!-- Card body -->
       <div class="card-body">
-        <!-- Chart -->
-        <div class="chart">
-          <!-- Chart wrapper -->
-          <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
+        <div class="row">
+          <div class="col">
+            <h5 class="card-title text-uppercase text-muted mb-0">All Members</h5>
+            <span class="h2 font-weight-bold mb-0"><?= isset($data['all_member']) ? $data['all_member'] : '0' ?></span>
+          </div>
+          <div class="col-auto">
+            <div class="icon icon-shape bg-orange text-white rounded-circle shadow">
+              <i class="ni ni-spaceship"></i>
+            </div>
+          </div>
         </div>
+        <p class="mt-3 mb-0 text-sm">
+          <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+          <span class="text-nowrap"></span>
+        </p>
       </div>
     </div>
   </div>
-  <div class="col-xl-4">
-    <div class="card">
-      <div class="card-header bg-transparent">
-        <div class="row align-items-center">
+  <div class="col-xl-3">
+    <div class="card card-stats">
+      <!-- Card body -->
+      <div class="card-body">
+        <div class="row">
           <div class="col">
-            <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-            <h5 class="h3 mb-0">Total orders</h5>
+            <h5 class="card-title text-uppercase text-muted mb-0">Books Borrowed</h5>
+            <span class="h2 font-weight-bold mb-0"><?= isset($data['books_borrowed']) ? $data['books_borrowed'] : '0' ?></span>
+          </div>
+          <div class="col-auto">
+            <div class="icon icon-shape bg-blue text-white rounded-circle shadow">
+              <i class="ni ni-books"></i>
+            </div>
           </div>
         </div>
+        <p class="mt-3 mb-0 text-sm">
+          <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+          <span class="text-nowrap"></span>
+        </p>
       </div>
+    </div>
+  </div>
+  <div class="col-xl-3">
+    <div class="card card-stats">
+      <!-- Card body -->
       <div class="card-body">
-        <!-- Chart -->
-        <div class="chart">
-          <canvas id="chart-bars" class="chart-canvas"></canvas>
+        <div class="row">
+          <div class="col">
+            <h5 class="card-title text-uppercase text-muted mb-0">TOTAL ADMIN</h5>
+            <span class="h2 font-weight-bold mb-0"><?= isset($data['admin_total']) ? $data['admin_total'] : '0' ?></span>
+          </div>
+          <div class="col-auto">
+            <div class="icon icon-shape bg-green text-white rounded-circle shadow">
+              <i class="ni ni-settings"></i>
+            </div>
+          </div>
         </div>
+        <p class="mt-3 mb-0 text-sm">
+          <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+          <span class="text-nowrap"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3">
+    <div class="card card-stats">
+      <!-- Card body -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h5 class="card-title text-uppercase text-muted mb-0">BOOKS RETURNED</h5>
+            <span class="h2 font-weight-bold mb-0"><?= isset($data['books_returned']) ? $data['books_returned'] : '0' ?></span>
+          </div>
+          <div class="col-auto">
+            <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+              <i class="fas fa-undo"></i>
+            </div>
+          </div>
+        </div>
+        <p class="mt-3 mb-0 text-sm">
+          <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+          <span class="text-nowrap"></span>
+        </p>
       </div>
     </div>
   </div>
@@ -59,10 +94,10 @@
       <div class="card-header border-0">
         <div class="row align-items-center">
           <div class="col">
-            <h3 class="mb-0">Page visits</h3>
+            <h3 class="mb-0">Borrowing history</h3>
           </div>
           <div class="col text-right">
-            <a href="#!" class="btn btn-sm btn-primary">See all</a>
+            <a href="<?= base_url('controllers/Borrow_log.php') ?>" class="btn btn-sm btn-primary">See all</a>
           </div>
         </div>
       </div>
@@ -71,83 +106,35 @@
         <table class="table align-items-center table-flush">
           <thead class="thead-light">
             <tr>
-              <th scope="col">Page name</th>
-              <th scope="col">Visitors</th>
-              <th scope="col">Unique users</th>
-              <th scope="col">Bounce rate</th>
+              <th scope="col">Member</th>
+              <th scope="col">Book</th>
+              <th scope="col">Date Transaction</th>
+              <th scope="col">Returned?</th>
             </tr>
           </thead>
           <tbody>
+          <?php if(isset($data['result']) && count($data['result']) > 0){ ?>
+          <?php foreach($data['result'] as $item) { ?>
             <tr>
-              <th scope="row">
-                /argon/
-              </th>
+              <th scope="row"><span class=""><?= $item['full_name'] ?></span></th>
+              <td><span class="badge badge-info"><?= $item['name'] ?></span></td>
+              <td><?= date('d/m/Y H:i:s', strtotime($item['created_at'])) ?></td>
               <td>
-                4,569
-              </td>
-              <td>
-                340
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
+                <?php
+                  if($item['is_returned']){
+                    echo "<span class='badge badge-success'>YES</span>";
+                  }else{
+                    echo "<span class='badge badge-danger'>NO</span>";
+                  }
+                ?>
               </td>
             </tr>
+          <?php } ?>
+          <?php }else { ?>
             <tr>
-              <th scope="row">
-                /argon/index.html
-              </th>
-              <td>
-                3,985
-              </td>
-              <td>
-                319
-              </td>
-              <td>
-                <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-              </td>
+              <td colspan="4">No data available in table</td>
             </tr>
-            <tr>
-              <th scope="row">
-                /argon/charts.html
-              </th>
-              <td>
-                3,513
-              </td>
-              <td>
-                294
-              </td>
-              <td>
-                <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                /argon/tables.html
-              </th>
-              <td>
-                2,050
-              </td>
-              <td>
-                147
-              </td>
-              <td>
-                <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                /argon/profile.html
-              </th>
-              <td>
-                1,795
-              </td>
-              <td>
-                190
-              </td>
-              <td>
-                <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-              </td>
-            </tr>
+          <?php } ?>
           </tbody>
         </table>
       </div>
@@ -158,10 +145,10 @@
       <div class="card-header border-0">
         <div class="row align-items-center">
           <div class="col">
-            <h3 class="mb-0">Social traffic</h3>
+            <h3 class="mb-0">Popular Books</h3>
           </div>
           <div class="col text-right">
-            <a href="#!" class="btn btn-sm btn-primary">See all</a>
+            <a href="<?= base_url('controllers/Borrow_log.php') ?>" class="btn btn-sm btn-primary">See all</a>
           </div>
         </div>
       </div>
@@ -170,102 +157,47 @@
         <table class="table align-items-center table-flush">
           <thead class="thead-light">
             <tr>
-              <th scope="col">Referral</th>
-              <th scope="col">Visitors</th>
+              <th scope="col">Books</th>
+              <th scope="col">Borrower</th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
+            <?php 
+              if(isset($data['popular']) && count($data['popular']) > 0) { 
+                $popular = $data['popular'];
+            ?>
+            <?php foreach($popular as $item) { ?>
             <tr>
               <th scope="row">
-                Facebook
+                <?= $item['name'] ?>
               </th>
-              <td>
-                1,480
+              <td>  
+                <?= $item['borrow_count'] ?>
               </td>
               <td>
+                <?php
+                  $percent = $item['borrow_count']/$data['count']*100;
+                  $percent = round($percent);
+                ?>
                 <div class="d-flex align-items-center">
-                  <span class="mr-2">60%</span>
+                  <span class="mr-2"><?= $percent ?>%</span>
                   <div>
                     <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                      <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="<?= $percent ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $percent ?>%;"></div>
                     </div>
                   </div>
                 </div>
               </td>
             </tr>
-            <tr>
-              <th scope="row">
-                Facebook
-              </th>
-              <td>
-                5,480
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">70%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                Google
-              </th>
-              <td>
-                4,807
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">80%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                Instagram
-              </th>
-              <td>
-                3,678
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">75%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                twitter
-              </th>
-              <td>
-                2,645
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span class="mr-2">30%</span>
-                  <div>
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
+            <?php } ?>
+            <?php } else { ?>
+              <tr>
+                <td colspan="3">
+                  No data available in table
+                </td>
+              </tr>
+            <?php } ?>
           </tbody>
         </table>
       </div>

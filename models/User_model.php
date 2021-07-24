@@ -63,6 +63,11 @@ class User_model extends BaseModel{
         ]);
         return $query ? $query : [];
     }
+
+    public function count_all(){
+        $query = $this->_query("SELECT count(a.id) as count FROM $this->table a");
+        return isset($query[0]['count']) ? $query[0]['count'] : 0;
+    }
 }
 
 ?>

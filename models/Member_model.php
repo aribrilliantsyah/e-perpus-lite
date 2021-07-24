@@ -60,6 +60,11 @@ class Member_model extends BaseModel{
         $query = $this->_query("SELECT a.* FROM $this->table a WHERE a.full_name LIKE '%$keyword%'");
         return $query ? $query : [];
     }
+
+    public function count_all(){
+        $query = $this->_query("SELECT count(a.id) as count FROM $this->table a");
+        return isset($query[0]['count']) ? $query[0]['count'] : 0;
+    }
 }
 
 ?>
