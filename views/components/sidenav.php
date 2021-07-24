@@ -12,7 +12,7 @@
         <!-- Nav items -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="examples/dashboard.html">
+            <a class="nav-link <?= get_last_uri() == 'Dashboard.php' ? 'active' : '' ?>" href="<?= base_url('controllers/Dashboard.php') ?>">
               <i class="ni ni-tv-2"></i>
               <span class="nav-link-text">Dashboard</span>
             </a>
@@ -24,7 +24,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="examples/dashboard.html">
+            <a class="nav-link <?= get_last_uri() == 'Library.php' ? 'active' : '' ?>" href="<?= base_url('controllers/Library.php') ?>">
               <i class="ni ni-books"></i>
               <span class="nav-link-text">Library</span>
             </a>

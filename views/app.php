@@ -19,8 +19,12 @@
   <link rel="stylesheet" href="<?= asset('assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') ?>">
   <link rel="stylesheet" href="<?= asset('assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css') ?>">
   <link rel="stylesheet" href="<?= asset('assets/vendor/select2/dist/css/select2.min.css') ?>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
   <!-- Argon CSS -->
   <link rel="stylesheet" href="<?= asset('assets/css/argon.css?v=1.2.0') ?>" type="text/css">
+  <!-- Core -->
+  <script src="<?= asset('assets/vendor/jquery/dist/jquery.min.js') ?>"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </head>
 
 <body>
@@ -43,7 +47,6 @@
   </div>
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="<?= asset('assets/vendor/jquery/dist/jquery.min.js') ?>"></script>
   <script src="<?= asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') ?>"></script>
   <script src="<?= asset('assets/vendor/js-cookie/js.cookie.js') ?>"></script>
   <script src="<?= asset('assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js') ?>"></script>
@@ -63,11 +66,46 @@
   <script src="<?= asset('assets/vendor/datatables.net-buttons/js/buttons.print.min.js') ?>"></script>
   <script src="<?= asset('assets/vendor/datatables.net-select/js/dataTables.select.min.js') ?>"></script>
   <script src="<?= asset('assets/vendor/select2/dist/js/select2.min.js') ?>"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
     $(() => {
       $('.dt_table').DataTable();
       $('.select2').select2();
     })
+    
+    function initSelect2Member(){
+      $('#member').select2({
+        placeholder: "Search Member's Name",
+        ajax: {
+          url: "<?= base_url('controllers/Library.php?type=autocomplete') ?>",
+          dataType: 'json',
+          delay: 250,
+          data: function (data) {
+            return {
+              searchTerm: data.term // search term
+            };
+          },
+          processResults: function (response) {
+            console.log(response)
+            return {
+              results: response
+            };
+          },
+          cache: true
+        },
+        escapeMarkup: function(markup) {
+          return markup;
+        },
+        templateResult: function(data) {
+          return data.html;
+        },
+        templateSelection: function(data) {
+          return data.text;
+        },
+        minimumInputLength: 1,
+      })
+    }
+    
   </script>
 </body>
 
